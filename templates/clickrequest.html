@@ -1,0 +1,23 @@
+<html>
+   <head>
+    <script src="https://my.click.uz/services/pay?service_id={service_id}&merchant_id={merchant_id}&amount={amount}&transaction_param={transaction_param}&return_url={return_url}&card_type={card_type}"></script>
+   </head>
+<body>
+    
+</body>
+    <h3>Sizning buyurtma miqdoringiz {{order.total}}.Sum </h3>
+    <form id="click_form" action="https://my.click.uz/services/pay" method="get" target="_blank">
+        <input type="text" name="tAmt" value="{{order.total}}"/>
+        <input type="text" name="amt" value="{{order.total}}"/>
+        <input type="text" name="txAmt" value="0"/>
+        <input type="text" name="psc" value="0"/>
+        <input type="text" name="pdc" value="0"/>
+        <input type="text" name="scd " value="click_payment"/>
+        <input type="text" name="pid" value="order_{{order.id}}"/>
+        <input type="text" name="su" value="http://127.0.0.1:8000/click-verify/"/>
+        <input type="text" name="fu" value="{{request.build_absolute_uri}}"/>
+      
+        <button type="submit" class="click_logo"><i></i>Pay with CLICK</button>
+      </form>
+
+</html>

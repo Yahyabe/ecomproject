@@ -1,0 +1,62 @@
+{% load static %}
+
+<head lang="{{ LANGUAGE_CODE }}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Home{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/style/main.css">      
+</head>
+<body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="{% url 'ecomapp:home' %}">Medix.uz</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'ecomapp:home' %}">Bosh Sahifa <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'ecomapp:allproducts' %}">Buyumlar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'ecomapp:mycart' %}">Savatcha</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Mening Profilim 
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">               
+                    {% if request.user.customer %}
+                    <a class="dropdown-item" href="{% url 'ecomapp:customerprofile' %}">Mining Profilim</a>
+                    <a class="dropdown-item" href="{% url 'ecomapp:customerlogout' %}">Chiqib ketish</a>
+                    {% else %} 
+                    <a class="dropdown-item" href="{% url 'ecomapp:customerregistration' %}">Register</a>
+                    <a class="dropdown-item" href="{% url 'ecomapp:customerlogin' %}">Kirish</a>
+                    {% endif %}
+                  </div>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0" action="{% url 'ecomapp:search' %}" method="GET">
+                 <input name="keyword" class="form-control mr-sm-2" type="search" placeholder="Qidiruv" aria-label="Search" required>
+                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Qidiruv</button>
+              </form>
+               </div>
+            </div>
+          </nav>
+
+    {% block content %}
+    
+    {% endblock %}
+
+ 
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

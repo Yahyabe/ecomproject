@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Medix{% endblock %}
+{% block content %}
+<div class="container">
+    <hr>
+    <h2>Barcha Buyumlar </h2>
+    <hr>
+    {% for cat in allcategories %}
+    <h4 class="text-dark">{{cat.title}}</h4>
+    <div class="row">
+        {% for p in cat.product_set.all  %}
+        <div class="col-md-3">
+            <div class="m-4 ">
+               <h4><a class="text-dark" href="{% url 'ecomapp:productdetail' p.slug %}">{{p.title}}</a></h4>
+               <img src="{{p.image.url}}" alt="" class="img-fluid" style="height: 160; object-fit: cover;">
+               <p class="mt-3">Price: <strike> {{p.marked_price}} .Sum</strike> {{p.selling_price}}. Sum</p>
+               <a href="{% url 'ecomapp:addtocart' p.id %}" class="btn btn-dark">Savatga Qoshish</a>
+            </div> 
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+              

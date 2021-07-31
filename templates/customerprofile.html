@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+           <h2>Tafsilotlar  </h2>
+           <hr>
+           <p><span class="font-weight-bold">Ism: </span>{{customer.full_name}}</p>
+           <p><span class="font-weight-bold">Saytdagi Ism: </span>{{customer.username}}</p>
+           <p><span class="font-weight-bold">Email: </span>{{customer.user_email}}</p>
+           <p><span class="font-weight-bold">Adres: </span>{{customer.address}}</p>
+           <p><span class="font-weight-bold">Qoshilgan kun: </span>{{customer.joined_on}}</p>
+        </div>
+        <div class="col-md-8">
+            <h3>Buyutmani Tekshirish</h3>
+            <hr>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Soni</th>
+                        <th>Buyurtma ID si</th>
+                        <th>Narxi</th>
+                        <th>Buyutma berilgan Kun </th>
+                        <th>Qaerdaligi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ord in orders %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><a href="{% url 'ecomapp:customerorderdetail' ord.pk %}"> #Buyutma_{{ord.id}}</a></td>
+                        <td>{{ord.total}}</td>
+                        <td>{{ord.created_at|timesince}} oldin</td>
+                        <td>{{ord.order_status}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

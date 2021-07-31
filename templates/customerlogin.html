@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Kirish {% endblock %}
+
+{% block content %}
+<style>
+   .errorlist {
+       color: brown;
+   } 
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h3>Mijoz Kirish Bolimi</h3>
+            <hr>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-primary">Kirish</button>
+                {% if error %}
+                <li style="color: red;">{{error}}</li>
+                {% endif %}
+            </form>
+            <p>Forgot Password?<a href="{% url 'ecomapp:passwordforgot' %}">Qayta kirmoq</a></p>
+            <p>or dont have account?  <a href="{% url 'ecomapp:customerregistration' %}{% if request.GET.next %}?next={{request.GET.next}}{% endif %}">Ro'yhatdan o'tish </a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

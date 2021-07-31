@@ -1,0 +1,27 @@
+.carousel-item {
+    height: 25rem;
+    background: #777;
+    color: rgb(5, 5, 5);
+    position: relative;
+    background-position: center;
+    background-size: cover;
+}
+.carousel-caption{
+    color: black;
+}
+.img {
+  border-radius: 10;
+
+    
+}
+
+@media only screen and (max-width: 800px) {
+  .carousel-item {
+    height: 50vh;
+  }
+  .carousel-caption img {
+    margin: 10vh auto;
+    width: 100vh;
+
+  }
+}

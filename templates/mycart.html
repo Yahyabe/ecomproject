@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Medix{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <hr>
+        <h4>Savatcha </h4><hr>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Soni</th>
+                    <th>Buyum</th>
+                    <th>Summasi</th>
+                    <th>Nechta</th>
+                    <th>Hammasi</th>
+                    <th>Miqdori</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cp in cart.cartproduct_set.all %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{cp.product.title}}</td>
+                    <td>{{cp.rate}}</td>
+                    <td>{{cp.quantity}}</td>
+                    <td>{{cp.subtotal}}</td>
+                    <td>
+                        <a href="{% url 'ecomapp:managecart' cp.id %}?action=inc" class="btn btn-primary">Qoshish</a>
+                        <a href="{% url 'ecomapp:managecart' cp.id %}?action=dcr" class="btn btn-warning">Ayrimoq</a>
+                        <a href="{% url 'ecomapp:managecart' cp.id %}?action=rmv" class="btn btn-danger">Bekor qilmoq</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <th colspan="4" class="text-right">Hammasi</th>
+                    <th>{{cart.total}}.Sum</th>
+                    {% if cart.cartproduct_set.all %}
+                    <th ><a href="{% url 'ecomapp:emptycart' %}">Bo'sh savat </a></th>
+                    {% endif %}
+                </tr>
+                {% if cart.cartproduct_set.all %}
+                <tr>
+                    <th><a class="btn btn-dark" href="{% url 'ecomapp:checkout' %}">Buyurtma Bermoq</a></th>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+
